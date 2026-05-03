@@ -11,11 +11,9 @@ __command to start:__
 docker-compose up -d
 ```
 
----
+**THIS IS A STARTER BOILERPLATE FOR LOCAL WORDPRESS DEPLOYMENT.**
 
-# English Description
-
-This project provides a pre-configured Docker environment for fast and reliable WordPress development. It automates the setup of the web server, database, and management tools, ensuring a consistent environment across different systems.
+It provides a pre-configured Docker environment for fast and reliable development, automating the setup of the web server, database, and management tools.
 
 ## Project Architecture
 
