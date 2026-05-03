@@ -28,6 +28,7 @@ We have added specific files to improve the development experience:
 
 1. **`uploads.ini`**: This file increases PHP limits (file uploads, memory, and execution time), which is essential for installing large WordPress themes and plugins.
 2. **`info.php`**: A diagnostic tool that allows you to verify the server configuration and confirm that custom settings are applied.
+   - **Access**: http://localhost:8080/info.php
 
 > [!WARNING]
 > **Security Note**: Always remove `info.php` before moving the project to a public or production server.
