@@ -3,63 +3,33 @@
 
 <img src="https://i.ibb.co/d4vyrRm/docker-bg.png">
 
-__Docker__ allows you to quickly build a set of containers and deploy __WordPress__ development. Then, just as quickly, transfer it all to any system. The "docker-compouse" file is provided, which is a set of instructions for __Docker__ that will download and install all dependencies. You only need to install __Docker__ on your computer.
+__Docker__ allows you to quickly build a set of containers and deploy __WordPress__ development. Then, just as quickly, transfer it all to any system. The "docker-compose" file is provided, which is a set of instructions for __Docker__ that will download and install all dependencies. You only need to install __Docker__ on your computer.
 
-__command to  start :__
+__command to start:__
 
-```git 
+```bash 
 docker-compose up -d
 ```
 
-```yaml
+---
 
-version: "3"
-services:
+# English Description
 
-  #MySQL Database image
-  my_database:
-    image: mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: my_password_1234789
-      MYSQL_DATABASE: my_wp_database
-      MYSQL_USER: my_wp_user
-      MYSQL_PASSWORD: my_wp_user_password
-    volumes:
-      - mysql:/var/lib/mysql
+This project provides a pre-configured Docker environment for fast and reliable WordPress development. It automates the setup of the web server, database, and management tools, ensuring a consistent environment across different systems.
 
-  #WordPress image based on Apache
-  wordpress:
-    depends_on:
-      - my_database
-    image: wordpress:latest
-    restart: always
-    ports:
-      - "8000:80"
-    environment:
-      WORDPRESS_DB_HOST: my_database:3306
-      WORDPRESS_DB_USER: my_wp_user
-      WORDPRESS_DB_PASSWORD: my_wp_user_password
-      WORDPRESS_DB_NAME: my_wp_database
-    volumes:
-      ["./:/var/www/html"]
+## Project Architecture
 
-  #PhpMyAdmin image
-  phpmyadmin:
-    depends_on:
-      - my_database
-    image: phpmyadmin/phpmyadmin
-    restart: always
-    ports:
-      - '8080:80'
-    environment:
-      PMA_HOST: my_database
-      MYSQL_ROOT_PASSWORD: my_password_1234789
-      
-volumes:
-  mysql: {}
+The environment consists of three main services:
+- **WordPress**: The main web server with live file linking.
+- **MySQL Database**: Persistent storage for all your content and settings.
+- **PhpMyAdmin**: A web-based tool for easy database management (available on port 8008).
 
+## Custom Features & Diagnostic Files
 
-```
+We have added specific files to improve the development experience:
 
+1. **`uploads.ini`**: This file increases PHP limits (file uploads, memory, and execution time), which is essential for installing large WordPress themes and plugins.
+2. **`info.php`**: A diagnostic tool that allows you to verify the server configuration and confirm that custom settings are applied.
 
+> [!WARNING]
+> **Security Note**: Always remove `info.php` before moving the project to a public or production server.

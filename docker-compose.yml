@@ -19,22 +19,24 @@ services:
     image: wordpress:latest
     restart: always
     ports:
-      - "8000:80"
+      - "8080:80"
     environment:
       WORDPRESS_DB_HOST: my_database:3306
       WORDPRESS_DB_USER: my_wp_user
       WORDPRESS_DB_PASSWORD: my_wp_user_password
       WORDPRESS_DB_NAME: my_wp_database
     volumes:
-      ["./:/var/www/html"]
+      - "./:/var/www/html"
+      - "./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini"
 
+  #PhpMyAdmin image
   phpmyadmin:
     depends_on:
       - my_database
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - '8080:80'
+      - '8008:80'
     environment:
       PMA_HOST: my_database
       MYSQL_ROOT_PASSWORD: my_password_1234789
